@@ -32,15 +32,6 @@ public class WheelSpin : MonoBehaviour
             for (int index = 0; index < _numberOfChildren; index++)
             {
                 _wheelsArray[index].Rotate(Vector3.right * Time.deltaTime * _wheelSpeed);
-
-                /*
-                Vector3 currentRotation = _wheelsArray[index].localEulerAngles;
-                float nextXRotation = currentRotation.x + _wheelSpeed * Time.deltaTime;
-                //if (nextXRotation >= 90 && nextXRotation < 270) { nextXRotation += 180; }
-                if (nextXRotation >= 360) { nextXRotation -= 360; }
-
-               _wheelsArray[index].localEulerAngles = new Vector3(nextXRotation, currentRotation.y, currentRotation.z); */
-
             }
         }
     }
