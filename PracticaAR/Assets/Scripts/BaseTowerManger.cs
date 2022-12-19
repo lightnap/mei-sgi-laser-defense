@@ -21,6 +21,7 @@ public class BaseTowerManger : MonoBehaviour
         if (_currentHealth <= 0) 
         {
             gameObject.SetActive(false); 
+            // Trigger gamer over screen or something.
         }
     }
 
@@ -28,8 +29,9 @@ public class BaseTowerManger : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            _currentHealth--; 
+            _currentHealth--;
+            Debug.Log("We have a hit");
         }
-        Debug.Log("We have a hit"); 
+
     }
 }

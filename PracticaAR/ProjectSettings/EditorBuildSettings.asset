@@ -57,7 +57,7 @@ EditorBuildSettings:
     path: Assets/SamplesResources/Scenes/3-Barcodes.unity
     guid: a3102d51f16474e8986f86570e9bed1f
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/GameScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 364fa5706bb64b8438198f1196bda033,
