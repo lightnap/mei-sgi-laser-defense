@@ -24,8 +24,18 @@ public class EnemySpawner : MonoBehaviour
     private float _carEnemySpeed = 0.1f; 
 
 
+    private int NUMBER_OF_ENEMIES = 2; 
+
+    [SerializeField]
+    private float FLY_ENEMY_SPAWN_HEIGHT = 1.0f; 
+
     [SerializeField]
     private GameObject _CarEnemyObject = null; // Prefab of the car enemy. 
+
+    [SerializeField]
+    private GameObject _DroneEnemyObject = null; // Prefab of the drone. 
+
+    private bool _spawningEnabled = false; 
 
     //private List<Transform> enemiesList = new List<Transform>(); 
 
@@ -38,7 +48,11 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _SpawnEnemyTimer -= Time.deltaTime;
+        if (_spawningEnabled)
+        {
+            _SpawnEnemyTimer -= Time.deltaTime;
+        }
+
         if (_SpawnEnemyTimer <= 0 && _CurrentSpawnedEnemies < _MaxSpawnedEnemies) 
         {
             SpawnEnemy();
@@ -52,13 +66,29 @@ public class EnemySpawner : MonoBehaviour
         _CurrentSpawnedEnemies++;
 
 
+        // Select which enemy to spawn. 
+        GameObject enemyToSpawn = null;  
+        int enemyToSpawnIndex = Random.Range(0, NUMBER_OF_ENEMIES);
+        float spawnYCoordinate = 0.0f; 
+        if (enemyToSpawnIndex == 0)
+        {
+            enemyToSpawn = _CarEnemyObject;
+            spawnYCoordinate = 0.0f; 
+        }
+        else 
+        {
+            enemyToSpawn = _DroneEnemyObject;
+            spawnYCoordinate = FLY_ENEMY_SPAWN_HEIGHT; 
+        }
+
         // Choose random point
         float angle = Random.Range(0.0f, 2*Mathf.PI);
         float radius = Random.Range(_MinSpawnRadius, _MaxSpawnRadius);
-        Vector3 spawnPosition = new Vector3(radius * Mathf.Cos(angle) + transform.position.x, 0.0f, radius * Mathf.Sin(angle) + +transform.position.z);
+        Vector3 spawnPosition = new Vector3(radius * Mathf.Cos(angle) + transform.position.x, spawnYCoordinate, radius * Mathf.Sin(angle) + +transform.position.z);
+
 
         // Spawn enemy at point. 
-        GameObject spawnedCar = Instantiate(_CarEnemyObject, spawnPosition, Quaternion.identity, transform);
+        GameObject spawnedCar = Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity, transform);
         spawnedCar.transform.LookAt(transform);
         spawnedCar.GetComponent<EnemyCarManager>()._enemySpawner = this;
         spawnedCar.GetComponent<EnemyCarManager>()._carSpeed = _carEnemySpeed; 
@@ -68,5 +98,14 @@ public class EnemySpawner : MonoBehaviour
     public void EnemyDestroyed() 
     {
         _CurrentSpawnedEnemies--; 
+    }
+
+    public void EnableSpawning()
+    {
+        _spawningEnabled = true; 
+    }
+    public void DisableSpawning()
+    {
+        _spawningEnabled = true; 
     }
 }

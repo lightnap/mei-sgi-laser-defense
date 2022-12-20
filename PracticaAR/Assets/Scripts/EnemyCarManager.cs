@@ -12,6 +12,8 @@ public class EnemyCarManager : MonoBehaviour
 
     public EnemySpawner _enemySpawner {get; set;}
 
+    private string MODEL_NAME = "EnemyModel"; 
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -53,7 +55,7 @@ public class EnemyCarManager : MonoBehaviour
         }
 
         // Make model invisible. 
-        transform.Find("EnemyModel").gameObject.SetActive(false);
+        transform.Find(MODEL_NAME).gameObject.SetActive(false);
         _isMoving = false;
 
 
