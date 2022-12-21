@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -40,6 +41,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private BaseTowerManger _baseTowerManager = null; 
 
+    [SerializeField] 
+    private TextMeshProUGUI _ScoreText = null;
+
     //private List<Transform> enemiesList = new List<Transform>(); 
 
     // Start is called before the first frame update
@@ -48,6 +52,8 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         _SpawnEnemyTimer = _SpawnRate; 
+        _score = 0; 
+        _ScoreText.SetText("Score: " +_score.ToString("D2")); 
     }
 
     // Update is called once per frame
@@ -117,6 +123,7 @@ public class EnemySpawner : MonoBehaviour
     public void EnemyDestroyedByLaser()
     {
         _score++; 
+        _ScoreText.SetText("Score: " +_score.ToString("D2")); 
         if(_baseTowerManager != null)
         {
             _baseTowerManager.HealTower(); 

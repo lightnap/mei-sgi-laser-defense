@@ -15,4 +15,13 @@ public class Mirror : MonoBehaviour
     {
         
     }
+
+    public void SetMirrorUpButtonPressed (bool aIspressed)
+    {
+
+    }
+    public void SetMirrorDownButtonPressed (bool aIspressed)
+    {
+
+    }
 }
