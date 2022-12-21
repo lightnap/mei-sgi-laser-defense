@@ -60,6 +60,10 @@ public class EnemyCarManager : MonoBehaviour
         if (_CurrentHealth <= 0 && !_IsBeingDestroyed) 
         {
             DestroyThisEnemy();
+            if (_enemySpawner != null) 
+            {
+                _enemySpawner.EnemyDestroyedByLaser();
+            }
         }
     }
 

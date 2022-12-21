@@ -12,6 +12,9 @@ public class BaseTowerManger : MonoBehaviour
 
     [SerializeField]
     private float _damagePerEnemyHit = 1.0f;
+
+    [SerializeField]
+    private float _healPerEnemyDeath = 0.5f; 
     private bool _CurrentlyBeingHit = false;
 
     private string MODEL_NAME = "TowerModel";
@@ -74,5 +77,10 @@ public class BaseTowerManger : MonoBehaviour
     {
         _CurrentlyBeingHit = true;
         _currentHealth -= Time.deltaTime;
+    }
+
+    public void HealTower()
+    {
+        _currentHealth += _healPerEnemyDeath;  
     }
 }

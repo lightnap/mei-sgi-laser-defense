@@ -37,9 +37,14 @@ public class EnemySpawner : MonoBehaviour
 
     private bool _spawningEnabled = false; 
 
+    [SerializeField]
+    private BaseTowerManger _baseTowerManager = null; 
+
     //private List<Transform> enemiesList = new List<Transform>(); 
 
     // Start is called before the first frame update
+
+    private int _score = 0; 
     void Start()
     {
         _SpawnEnemyTimer = _SpawnRate; 
@@ -107,5 +112,14 @@ public class EnemySpawner : MonoBehaviour
     public void DisableSpawning()
     {
         _spawningEnabled = true; 
+    }
+
+    public void EnemyDestroyedByLaser()
+    {
+        _score++; 
+        if(_baseTowerManager != null)
+        {
+            _baseTowerManager.HealTower(); 
+        }
     }
 }
