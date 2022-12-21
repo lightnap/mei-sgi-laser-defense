@@ -12,6 +12,7 @@ public class EnemyCarManager : MonoBehaviour
     private float _MaxHealth = 3.0f;
     private float _CurrentHealth = 0.0f;
     private bool _CurrentlyBeingHit = false;
+    private bool _PreviouslyBeingHit = false; 
 
     private bool _IsBeingDestroyed = false;
 
@@ -20,7 +21,10 @@ public class EnemyCarManager : MonoBehaviour
 
     public EnemySpawner _enemySpawner {get; set;}
 
-    private string MODEL_NAME = "EnemyModel"; 
+    private string MODEL_NAME = "EnemyModel";
+
+    [SerializeField]
+    private WheelSpin _wheelSpin = null; 
     
     
     // Start is called before the first frame update
@@ -37,10 +41,21 @@ public class EnemyCarManager : MonoBehaviour
         {
             transform.Translate(Vector3.forward * Time.deltaTime * _carSpeed); 
         }
+
+        if (_CurrentlyBeingHit && !_PreviouslyBeingHit) 
+        {
+            StopCar();
+            _PreviouslyBeingHit = true;
+        }
+        else if (_PreviouslyBeingHit && !_CurrentlyBeingHit) 
+        {
+            _PreviouslyBeingHit = false;
+            UnstopCar();
+        }
+
         if (_CurrentlyBeingHit) 
         {
             _CurrentlyBeingHit = false;
-            UnstopCar();
         }
         if (_CurrentHealth <= 0 && !_IsBeingDestroyed) 
         {
@@ -51,11 +66,21 @@ public class EnemyCarManager : MonoBehaviour
     public void StopCar() 
     {
         _isMoving = false;
+        if (_wheelSpin != null) 
+        {
+            _wheelSpin.StopWheelsSpinning();
+            Debug.Log("StoppedWHeelSPin");
+        }
     }
 
     public void UnstopCar()
     {
         _isMoving = true;
+        if (_wheelSpin != null)
+        {
+            _wheelSpin.StartWheelsSpinning();
+            Debug.Log("UnStoppedWHeelSPin");
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -97,7 +122,6 @@ public class EnemyCarManager : MonoBehaviour
     {
         _CurrentlyBeingHit = true;
         _CurrentHealth -= Time.deltaTime;
-        StopCar(); 
     }
 
 }

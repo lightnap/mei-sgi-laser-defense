@@ -6,9 +6,13 @@ public class BaseTowerManger : MonoBehaviour
 {
 
     [SerializeField]
-    private int _maximumHealth = 10;
+    private float _maximumHealth = 10.0f;
 
-    private int _currentHealth = 1;
+    private float _currentHealth = 1.0f;
+
+    [SerializeField]
+    private float _damagePerEnemyHit = 1.0f;
+    private bool _CurrentlyBeingHit = false;
 
     private string MODEL_NAME = "TowerModel";
 
@@ -21,10 +25,14 @@ public class BaseTowerManger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_currentHealth <= 0) 
+        if (_currentHealth <= 0.0f) 
         {
             DestroyThisTower();
             // Trigger gamer over screen or something.
+        }
+        if (_CurrentlyBeingHit)
+        {
+            _CurrentlyBeingHit = false;
         }
     }
 
@@ -52,9 +60,15 @@ public class BaseTowerManger : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            _currentHealth--;
+            _currentHealth-= _damagePerEnemyHit;
             Debug.Log("We have a hit");
         }
 
+    }
+
+    public void DecreaseHealth()
+    {
+        _CurrentlyBeingHit = true;
+        _currentHealth -= Time.deltaTime;
     }
 }

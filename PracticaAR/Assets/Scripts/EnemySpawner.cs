@@ -73,12 +73,12 @@ public class EnemySpawner : MonoBehaviour
         if (enemyToSpawnIndex == 0)
         {
             enemyToSpawn = _CarEnemyObject;
-            spawnYCoordinate = 0.0f; 
+            spawnYCoordinate = transform.position.y; 
         }
         else 
         {
             enemyToSpawn = _DroneEnemyObject;
-            spawnYCoordinate = FLY_ENEMY_SPAWN_HEIGHT; 
+            spawnYCoordinate = transform.position.y + FLY_ENEMY_SPAWN_HEIGHT; 
         }
 
         // Choose random point

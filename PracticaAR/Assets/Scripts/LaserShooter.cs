@@ -46,21 +46,29 @@ public class LaserShooter : MonoBehaviour
                     // Hit a mirror.
                     HasHitReflectableSurface = true;
                     _lineRenderer.positionCount = _lineRenderer.positionCount + 1;
-                    
+
                     NextRayDirection = hit.transform.InverseTransformVector(CurrentRayDirection * (-1.0f));
                     NextRayDirection = new Vector3(NextRayDirection.x, -NextRayDirection.y, -NextRayDirection.z);
-                    NextRayDirection = hit.transform.TransformVector(NextRayDirection); 
+                    NextRayDirection = hit.transform.TransformVector(NextRayDirection);
 
                     Debug.Log("Hit a mirror");
 
                 }
-                else if(hit.transform.gameObject.tag == "Enemy")
+                else if (hit.transform.gameObject.tag == "Enemy")
                 {
                     // Hit an enemy. 
                     HasHitReflectableSurface = false;
                     Debug.Log("Hit an enemy");
                     // Call enemy funtion that hurts them. 
-                    hit.transform.GetComponent<EnemyCarManager>().DecreaseHealth(); 
+                    hit.transform.GetComponent<EnemyCarManager>().DecreaseHealth();
+                }
+                else if (hit.transform.gameObject.tag == "MainBase") 
+                {
+                    // Has hit main base. 
+                    HasHitReflectableSurface = false;
+                    Debug.Log("Hit main base");
+                    // Call main base that hurts them. 
+                    hit.transform.GetComponent<BaseTowerManger>().DecreaseHealth();
                 }
                 else
                 {

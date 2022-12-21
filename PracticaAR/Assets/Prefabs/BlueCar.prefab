@@ -726,6 +726,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _carSpeed: 0.1
   _MaxHealth: 2
+  _wheelSpin: {fileID: 3195890143380032136}
 --- !u!65 &4908252132599487422
 BoxCollider:
   m_ObjectHideFlags: 0
