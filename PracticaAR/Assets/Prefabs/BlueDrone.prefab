@@ -19251,7 +19251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f48994de602b280de9e5637ac212b8ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spinSpeed: 5
+  _spinSpeed: -25
 --- !u!1 &4506664587624732075
 GameObject:
   m_ObjectHideFlags: 0
@@ -19360,7 +19360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f48994de602b280de9e5637ac212b8ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spinSpeed: -5
+  _spinSpeed: 25
 --- !u!1 &4506664587624732081
 GameObject:
   m_ObjectHideFlags: 0
@@ -19411,9 +19411,10 @@ GameObject:
   - component: {fileID: 4506664587624696211}
   - component: {fileID: 4506664587632125555}
   - component: {fileID: 4506664587632125552}
+  - component: {fileID: 1877598830467525162}
   m_Layer: 0
   m_Name: BlueDrone
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19430,8 +19431,8 @@ Transform:
   m_LocalScale: {x: 0.058977824, y: 0.058977824, z: 0.058977824}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4506664587921626452}
   - {fileID: 4506664588349113534}
+  - {fileID: 4506664587921626452}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19468,6 +19469,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _carSpeed: 5
+  _MaxHealth: 1
+--- !u!136 &1877598830467525162
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4506664587624732083}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.2
+  m_Height: 0.31
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.09, z: 0}
 --- !u!1 &4506664587624732085
 GameObject:
   m_ObjectHideFlags: 0
@@ -19760,7 +19776,7 @@ Transform:
   - {fileID: 4506664587244140411}
   - {fileID: 4506664588479152455}
   m_Father: {fileID: 4506664587624696211}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &4506664587921626447
 ParticleSystem:
@@ -29398,7 +29414,7 @@ Transform:
   - {fileID: 4506664587624696213}
   - {fileID: 4506664587624696203}
   m_Father: {fileID: 4506664587624696211}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4506664588479152454
 GameObject:

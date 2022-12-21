@@ -8,16 +8,26 @@ public class EnemyCarManager : MonoBehaviour
     [SerializeField]
     public float _carSpeed = 5.0f;
 
+    [SerializeField]
+    private float _MaxHealth = 3.0f;
+    private float _CurrentHealth = 0.0f;
+    private bool _CurrentlyBeingHit = false;
+
+    private bool _IsBeingDestroyed = false;
+
+
     private bool _isMoving = false;
 
     public EnemySpawner _enemySpawner {get; set;}
 
     private string MODEL_NAME = "EnemyModel"; 
     
+    
     // Start is called before the first frame update
     void Start()
     {
-        _isMoving = true; 
+        _isMoving = true;
+        _CurrentHealth =_MaxHealth; 
     }
 
     // Update is called once per frame
@@ -26,6 +36,15 @@ public class EnemyCarManager : MonoBehaviour
         if (_isMoving) 
         {
             transform.Translate(Vector3.forward * Time.deltaTime * _carSpeed); 
+        }
+        if (_CurrentlyBeingHit) 
+        {
+            _CurrentlyBeingHit = false;
+            UnstopCar();
+        }
+        if (_CurrentHealth <= 0 && !_IsBeingDestroyed) 
+        {
+            DestroyThisEnemy();
         }
     }
 
@@ -41,7 +60,7 @@ public class EnemyCarManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "MainBase") 
+        if (other.gameObject.tag == "MainBase" && !_IsBeingDestroyed) 
         {
             DestroyThisEnemy();
         }
@@ -49,6 +68,7 @@ public class EnemyCarManager : MonoBehaviour
 
     public void DestroyThisEnemy() 
     {
+        _IsBeingDestroyed = true; 
         if (_enemySpawner != null) 
         {
             _enemySpawner.EnemyDestroyed(); 
@@ -56,8 +76,7 @@ public class EnemyCarManager : MonoBehaviour
 
         // Make model invisible. 
         transform.Find(MODEL_NAME).gameObject.SetActive(false);
-        _isMoving = false;
-
+        StopCar();
 
         // Play explosion effect and sound or something. 
         StartCoroutine(WaitToDestroy());
@@ -72,6 +91,13 @@ public class EnemyCarManager : MonoBehaviour
 
         yield return new WaitForSeconds(2);
         Destroy(gameObject);
+    }
+
+    public void DecreaseHealth() 
+    {
+        _CurrentlyBeingHit = true;
+        _CurrentHealth -= Time.deltaTime;
+        StopCar(); 
     }
 
 }

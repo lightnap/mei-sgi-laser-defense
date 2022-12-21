@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MainBase
   - Enemy
+  - Mirror
   layers:
   - Default
   - TransparentFX
@@ -14,9 +15,9 @@ TagManager:
   - Water
   - UI
   - 
-  - 
-  - 
-  - 
+  - StopLaserLayer
+  - HurtByLaserLayer
+  - ReflectLaser
   - 
   - 
   - 
