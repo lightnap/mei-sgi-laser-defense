@@ -16,10 +16,13 @@ public class BaseTowerManger : MonoBehaviour
 
     private string MODEL_NAME = "TowerModel";
 
+    public HealthBar healthBar; 
+
     // Start is called before the first frame update
     void Start()
     {
         _currentHealth = _maximumHealth;
+        healthBar.SetMaxHealth(_maximumHealth); 
     }
 
     // Update is called once per frame
@@ -34,6 +37,7 @@ public class BaseTowerManger : MonoBehaviour
         {
             _CurrentlyBeingHit = false;
         }
+        healthBar.SetHealth(_currentHealth);
     }
 
     public void DestroyThisTower()
