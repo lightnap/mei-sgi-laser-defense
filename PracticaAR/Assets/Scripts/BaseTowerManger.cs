@@ -81,6 +81,10 @@ public class BaseTowerManger : MonoBehaviour
 
     public void HealTower()
     {
-        _currentHealth += _healPerEnemyDeath;  
+        _currentHealth += _healPerEnemyDeath;
+        if (_currentHealth > _maximumHealth) 
+        {
+            _currentHealth = _maximumHealth; 
+        }
     }
 }
