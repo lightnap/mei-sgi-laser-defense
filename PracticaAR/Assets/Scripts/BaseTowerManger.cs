@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+
 
 public class BaseTowerManger : MonoBehaviour
 {
@@ -21,11 +23,22 @@ public class BaseTowerManger : MonoBehaviour
 
     public HealthBar healthBar; 
 
+    [SerializeField]
+    private GameObject _GameOverCanvas = null; 
+    [SerializeField]
+    private GameObject _CommonUICanvas = null; 
+
+    private int _score = 0; 
+
+    [SerializeField] 
+    private TextMeshProUGUI _GameOverScoreText = null;
+
     // Start is called before the first frame update
     void Start()
     {
         _currentHealth = _maximumHealth;
         healthBar.SetMaxHealth(_maximumHealth); 
+        _GameOverScoreText.SetText("Score: " +_score.ToString("D2")); 
     }
 
     // Update is called once per frame
@@ -59,7 +72,12 @@ public class BaseTowerManger : MonoBehaviour
         transform.Find("BigDeathExplosionPfx").gameObject.SetActive(true);
 
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
+
+        _GameOverCanvas.SetActive(true); 
+        _CommonUICanvas.SetActive(false);
+        _GameOverScoreText.SetText("Score: " +_score.ToString("D2")); 
+
         Destroy(gameObject);
     }
 
@@ -87,4 +105,9 @@ public class BaseTowerManger : MonoBehaviour
             _currentHealth = _maximumHealth; 
         }
     }
+    public void UpdateScore(int aScore)
+    {
+        _score = aScore; 
+    }
+
 }

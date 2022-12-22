@@ -9,6 +9,7 @@ public class LaserShooter : MonoBehaviour
     [SerializeField]
     private int _maxNumberBounces = 4;
 
+    private int _IgnoreTowerLaserLayerIndex = 11; 
 
     // Start is called before the first frame update
     void Start()
@@ -32,15 +33,19 @@ public class LaserShooter : MonoBehaviour
         Vector3 CurrentRayDirection = transform.TransformDirection(Vector3.forward);
         Vector3 NextRayDirection = new Vector3(0.0f, 0.0f, 0.0f);
         _lineRenderer.positionCount = 2;
+        int layerMask = 1 << _IgnoreTowerLaserLayerIndex;
+        layerMask |= 1 << 2;
+        layerMask = ~layerMask;
 
         do
         {
-            if (Physics.Raycast(CurrentRayOrigin, CurrentRayDirection, out hit, Mathf.Infinity))
+            if (Physics.Raycast(CurrentRayOrigin, CurrentRayDirection, out hit, Mathf.Infinity, layerMask))
             {
                 HasHit = true;
                 Debug.DrawRay(CurrentRayOrigin, CurrentRayDirection * hit.distance, Color.yellow);
                 hitPoint = CurrentRayOrigin + CurrentRayDirection * hit.distance;
                 Debug.Log("Did Hit");
+
                 if (hit.transform.gameObject.tag == "Mirror")
                 {
                     // Hit a mirror.
@@ -73,6 +78,7 @@ public class LaserShooter : MonoBehaviour
                 else
                 {
                     // Hit something that is not an enemy, not a mirror. 
+                    HasHitReflectableSurface = false;
                     HasHitReflectableSurface = false;
                 }
             }

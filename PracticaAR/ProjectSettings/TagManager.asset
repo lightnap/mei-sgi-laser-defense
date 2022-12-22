@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Mirror
   - LaserTower
+  - MirrorTower
+  - MirrorSlider
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - HurtByLaserLayer
   - ReflectLaser
   - 
-  - 
+  - IgnoreTowerLaser
   - 
   - 
   - 

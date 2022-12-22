@@ -545,7 +545,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -32.97815, y: 123.411804}
+  m_AnchoredPosition: {x: -32.97815, y: 99}
   m_SizeDelta: {x: 120.1735, y: 50.8183}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &145185899
@@ -2894,7 +2894,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -32.97815, y: -447.5882}
+  m_AnchoredPosition: {x: -18, y: -447.5882}
   m_SizeDelta: {x: 220.5767, y: 50.8183}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1349271676
@@ -3352,8 +3352,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -27, y: 17.8998}
-  m_SizeDelta: {x: 1004.6836, y: 489.8459}
+  m_AnchoredPosition: {x: 9.4242, y: 101.1381}
+  m_SizeDelta: {x: 1949.9, y: 494.1221}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1722268162
 MonoBehaviour:
@@ -3375,15 +3375,19 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Use lasers to destroy all the cars before they reach your central tower.
+  m_text: 'Use lasers to destroy all the cars and drones before they reach your central
+    tower
 
 
-    Laser
-    towers may only be roated, by tapping them on the screen.
+    Laser towers may only be roated, by tapping them on the screen
 
 
-    Mirrors will
-    reflect lasers.'
+    Mirrors
+    will reflect lasers. Tap on them to change their inclination using a slider
+
+
+    Survive
+    for as long as you can!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

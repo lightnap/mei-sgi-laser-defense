@@ -44,6 +44,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] 
     private TextMeshProUGUI _ScoreText = null;
 
+
+
     //private List<Transform> enemiesList = new List<Transform>(); 
 
     // Start is called before the first frame update
@@ -54,6 +56,7 @@ public class EnemySpawner : MonoBehaviour
         _SpawnEnemyTimer = _SpawnRate; 
         _score = 0; 
         _ScoreText.SetText("Score: " +_score.ToString("D2")); 
+
     }
 
     // Update is called once per frame
@@ -124,9 +127,11 @@ public class EnemySpawner : MonoBehaviour
     {
         _score++; 
         _ScoreText.SetText("Score: " +_score.ToString("D2")); 
+
         if(_baseTowerManager != null)
         {
             _baseTowerManager.HealTower(); 
+            _baseTowerManager.UpdateScore(_score);
         }
     }
 }

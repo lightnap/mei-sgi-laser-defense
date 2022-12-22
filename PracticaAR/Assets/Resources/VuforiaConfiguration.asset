@@ -45,7 +45,7 @@ MonoBehaviour:
     thirdPartyARCoreClientDetected: 0
   playmode:
     mSequencePath: Assets/SamplesResources/Recordings/area_target.mp4
-    playModeType: 1
+    playModeType: 2
   webcam:
     renderTextureLayer: 30
   packageInformation:

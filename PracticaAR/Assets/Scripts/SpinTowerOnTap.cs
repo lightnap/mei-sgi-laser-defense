@@ -25,7 +25,7 @@ public class SpinTowerOnTap : MonoBehaviour
             {
                 if (hit.transform.tag == "LaserTower") 
                 {
-                    transform.Rotate(Vector3.up * _angleToSpinOnTap); 
+                    hit.transform.Rotate(Vector3.up * _angleToSpinOnTap); 
                 }
             }
         }
